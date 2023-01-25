@@ -1,7 +1,12 @@
 import { Button, Flex, Icon, Text } from "@chakra-ui/react";
 import { IoCartSharp } from 'react-icons/io5';
+import { useDispatch } from "react-redux";
+import { onOpen } from '../store/shoppingCartSlice';
+
 
 export function Header() {
+  const dispatch = useDispatch()
+
   return (
     <Flex
       as='header'
@@ -11,7 +16,7 @@ export function Header() {
       alignItems='center'
       justify='center'
       mb='auto'
-      position={'absolute'}
+      // position={'absolute'}
     >
       <Flex  w='100%' maxW={1440} align='center' >
         <Text
@@ -35,6 +40,7 @@ export function Header() {
         <Button
           ml='auto'
           size='lg'
+          onClick={() => dispatch(onOpen())}
         >
           <Icon as={IoCartSharp} fontSize='20px' mr='1'/>
           0
