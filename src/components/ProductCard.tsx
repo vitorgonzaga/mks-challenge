@@ -14,7 +14,7 @@ export function ProductCard() {
         <Flex h='170px' align='center' justify='center' >
           <Image
             boxSize={'140px'}
-            objectFit='cover'
+            objectFit='contain'
             src="https://m.media-amazon.com/images/I/511KyqqmhsL._AC_SX522_.jpg"
             alt='Product Image'
           />
