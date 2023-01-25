@@ -1,6 +1,7 @@
-import { Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, Flex, Text } from "@chakra-ui/react";
+import { Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, Flex, Stack, Text } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { onClose, selectIsOpen } from '../store/shoppingCartSlice';
+import { ProductInCard } from "./ProductInCard";
 
 
 export function ShoppingCart() {
@@ -31,8 +32,11 @@ export function ShoppingCart() {
               <Text>de compras</Text>
             </Text>
           </DrawerHeader>
-          <DrawerBody>
-            <h1>Lista de produtos</h1>
+          <DrawerBody pl='47px' display='flex' flexDirection='column' alignItems='center' justifyContent='flex-start' >
+            <Stack spacing='28px' >
+              <ProductInCard />
+              <ProductInCard />
+            </Stack>
           </DrawerBody>
           <DrawerFooter flexDirection='column' p={0}>
             <Flex
