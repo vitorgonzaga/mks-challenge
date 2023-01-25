@@ -1,23 +1,29 @@
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { ProductCard } from "@/components/ProductCard";
-import { Box, Flex } from "@chakra-ui/react";
+import { ShoppingCart } from "@/components/ShoppingCart";
+import { Flex } from "@chakra-ui/react";
 
 export default function Home() {
+
   return (
-    <Box
+    <Flex
+      direction='column'
       w='100vw'
       h='100vh'
     >
       <Header />
       <Flex
-        pt='101px'
+        w='100%'
+        maxW={1440}
+        mx='auto'
+        // pt='101px'
         h='calc(100vh - 34px)'
         align='center'
         justify='center'
       >
         <Flex
-          w='938px'
+          w='100%'
           maxWidth={950}
           h='100%'
           maxHeight={630}
@@ -34,7 +40,8 @@ export default function Home() {
           <ProductCard />
         </Flex>
       </Flex>
+      <ShoppingCart />
       <Footer />
-    </Box>
+    </Flex>
   )
 }
