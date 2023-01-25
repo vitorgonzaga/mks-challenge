@@ -52,6 +52,11 @@ export function ProductCard() {
           justify='center'
           spacing='1'
           h='32px'
+          cursor='pointer'
+          _hover={{
+            filter: 'opacity(0.8)',
+            transition: 'filter 0.3s'
+          }}
         >
           <Icon as={FiShoppingBag} color='white' />
           <Text
