@@ -2,9 +2,62 @@ import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { ProductCard } from "@/components/ProductCard";
 import { ShoppingCart } from "@/components/ShoppingCart";
-import { Flex } from "@chakra-ui/react";
+import { api } from "@/services/api";
+import { Flex, Spinner, Text } from "@chakra-ui/react";
+import { GetStaticProps } from "next";
+import { useState } from "react";
+import { useQuery } from "react-query";
 
-export default function Home() {
+export type Product = {
+  id: number,
+  photo: string,
+  name: string,
+  price: string,
+  description: string,
+  createdAt: string
+}
+
+interface HomeProps {
+  products: Product[]
+}
+
+export default function Home({ products }: HomeProps) {
+  const [ page, setPage ] = useState(1)
+  const { isLoading, error, data } = useQuery(['products', page], async () => {
+    const { data } = await api.get('products', {
+      params: {
+        page,
+        rows: 8,
+        sortBy: 'id',
+        orderBy: 'DESC'
+      }
+    })
+
+    console.log('query -> data', data)
+
+    const products = data.products.map(({ id, photo, name, price, description, createdAt }: Product) => {
+      return {
+        id,
+        photo,
+        name,
+        price: Intl.NumberFormat('pt-BR',{
+          style: 'currency',
+          currency: 'BRL',
+          minimumFractionDigits: 0,
+        }).format(Number(price)).replace(' ', ''),
+        description,
+        createdAt
+      }
+    })
+
+    console.log('products -> products', products)
+
+    return products
+
+  })
+
+
+  console.log('Home -> props', products)
 
   return (
     <Flex
@@ -17,8 +70,7 @@ export default function Home() {
         w='100%'
         maxW={1440}
         mx='auto'
-        // pt='101px'
-        h='calc(100vh - 34px)'
+        h='calc(100vh - 101px - 34px)'
         align='center'
         justify='center'
       >
@@ -26,22 +78,58 @@ export default function Home() {
           w='100%'
           maxWidth={950}
           h='100%'
-          maxHeight={630}
+          maxHeight={650}
           wrap='wrap'
           justify='space-between'
+          gap='16px'
         >
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
+          { isLoading ? (
+            <Flex align='center' justify='center'>
+              <Spinner fontSize='50px'/>
+            </Flex>
+          ) : error ? (
+            <Flex align='center' justify='center'>
+              <Text fontWeight={600}>Não foi possível obter os dados de produtos.</Text>
+            </Flex>
+          ) : (
+            data?.map((product: Product) => {
+              return <ProductCard key={product.id} product={product} />
+            })
+          )}
         </Flex>
       </Flex>
       <ShoppingCart />
       <Footer />
     </Flex>
   )
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+
+  const { data } = await api.get('products', {
+    params: {
+      page: 1,
+      rows: 8,
+      sortBy: 'id',
+      orderBy: 'DESC'
+    }
+  })
+
+  const products = data.products.map(({ id, photo, name, price, description, createdAt }: Product) => {
+    return {
+      id,
+      photo,
+      name,
+      price,
+      description,
+      createdAt
+    }
+  })
+
+  return {
+    props: {
+      products
+    },
+
+  }
 }
