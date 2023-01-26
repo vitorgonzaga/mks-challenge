@@ -4,13 +4,13 @@ import { AiOutlineCopyrightCircle } from 'react-icons/ai'
 export function Footer() {
   return (
     <Flex
-      mt='auto'
-      mb='0px'
       w='100%'
       h='34px'
       bg='brand.gray.200'
       align='center'
       justify='center'
+      position='fixed'
+      bottom='0px'
     >
       <Flex w='100%' maxW={1440} align='center' justify='center'>
         <Text>
