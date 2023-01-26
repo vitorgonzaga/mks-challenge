@@ -77,7 +77,10 @@ export default function Home({ products }: HomeProps) {
         w='100%'
         maxW={1440}
         mx='auto'
-        h='calc(100vh - 101px - 34px)'
+        // my='auto'
+        // h='calc(100vh - 101px - 34px)'
+        // mt='101px'
+        h="100%"
         align='center'
         justify='center'
       >
