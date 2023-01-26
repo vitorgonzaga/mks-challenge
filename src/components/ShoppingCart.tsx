@@ -1,13 +1,14 @@
 import { Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, Flex, Stack, Text } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
-import { IsOpenSelector, onClose } from '../store/shoppingCartSlice';
+import { cart, IsOpenSelector, onClose, totalAmount } from '../store/shoppingCartSlice';
 import { ProductInCard } from "./ProductInCard";
 
 
 export function ShoppingCart() {
   const dispatch = useDispatch()
   const isOpen = useSelector(IsOpenSelector)
-
+  const shoppingCart = useSelector(cart)
+  const total = useSelector(totalAmount)
 
   return(
     <Drawer
@@ -34,8 +35,7 @@ export function ShoppingCart() {
           </DrawerHeader>
           <DrawerBody pl='47px' display='flex' flexDirection='column' alignItems='center' justifyContent='flex-start' >
             <Stack spacing='28px' >
-              <ProductInCard />
-              <ProductInCard />
+              { shoppingCart.map(product => <ProductInCard key={product.id} product={product} /> ) }
             </Stack>
           </DrawerBody>
           <DrawerFooter flexDirection='column' p={0}>
@@ -53,7 +53,7 @@ export function ShoppingCart() {
               px='47px'
             >
               <Flex>Total:</Flex>
-              <Flex>R$798</Flex>
+              <Flex>{ total }</Flex>
             </Flex>
             <Button
               bg='black'
