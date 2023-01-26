@@ -1,8 +1,8 @@
 import { Product } from "@/pages";
 import { Flex, Heading, HStack, Icon, Image, Text } from "@chakra-ui/react";
 import { FiShoppingBag } from 'react-icons/fi';
-import { addProduct } from '../store/shoppingCartSlice'
 import { useDispatch } from "react-redux";
+import { addProduct, calculateTotal } from '../store/shoppingCartSlice';
 
 interface ProductCard {
   product: Product
@@ -64,7 +64,10 @@ export function ProductCard({ product: { id, photo, name, price, description } }
             filter: 'opacity(0.8)',
             transition: 'filter 0.3s'
           }}
-          onClick={() => dispatch(addProduct({ id, photo, name, price, description }))}
+          onClick={() => {
+            dispatch(addProduct({ id, photo, name, price, description }))
+            dispatch(calculateTotal())
+          }}
         >
           <Icon as={FiShoppingBag} color='white' />
           <Text
