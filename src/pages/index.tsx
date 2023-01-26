@@ -3,10 +3,12 @@ import { Header } from "@/components/Header";
 import { ProductCard } from "@/components/ProductCard";
 import { ShoppingCart } from "@/components/ShoppingCart";
 import { api } from "@/services/api";
+import { saveCart } from "@/store/shoppingCartSlice";
 import { Flex, Spinner, Text } from "@chakra-ui/react";
 import { GetStaticProps } from "next";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
+import { useDispatch } from "react-redux";
 
 export type Product = {
   id: number,
@@ -23,6 +25,8 @@ interface HomeProps {
 
 export default function Home({ products }: HomeProps) {
   const [ page, setPage ] = useState(1)
+  const dispatch = useDispatch()
+
   const { isLoading, error, data } = useQuery(['products', page], async () => {
     const { data } = await api.get('products', {
       params: {
@@ -32,8 +36,6 @@ export default function Home({ products }: HomeProps) {
         orderBy: 'DESC'
       }
     })
-
-    console.log('query -> data', data)
 
     const products = data.products.map(({ id, photo, name, price, description, createdAt }: Product) => {
       return {
@@ -50,14 +52,19 @@ export default function Home({ products }: HomeProps) {
       }
     })
 
-    console.log('products -> products', products)
-
     return products
 
   })
 
-
-  console.log('Home -> props', products)
+  useEffect(() => {
+    const storageCart = localStorage.getItem('@mks:cart')
+    if (!storageCart) {
+      localStorage.setItem('@mks:cart', JSON.stringify([]))
+    } else {
+      dispatch(saveCart(JSON.parse(storageCart)))
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <Flex
