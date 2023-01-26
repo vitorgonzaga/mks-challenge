@@ -1,7 +1,7 @@
 import { Button, Flex, Icon, Text } from "@chakra-ui/react";
 import { IoCartSharp } from 'react-icons/io5';
 import { useDispatch, useSelector } from "react-redux";
-import { cartLength, onOpen } from '../store/shoppingCartSlice';
+import { calculateTotal, cartLength, onOpen } from '../store/shoppingCartSlice';
 
 
 export function Header() {
@@ -16,7 +16,7 @@ export function Header() {
       bg='brand.blue.500'
       alignItems='center'
       justify='center'
-      mb='auto'
+      position='fixed'
     >
       <Flex  w='100%' maxW={1440} align='center' >
         <Text
@@ -40,7 +40,10 @@ export function Header() {
         <Button
           ml='auto'
           size='lg'
-          onClick={() => dispatch(onOpen())}
+          onClick={() => {
+            dispatch(onOpen())
+            dispatch(calculateTotal())
+          }}
         >
           <Icon as={IoCartSharp} fontSize='20px' mr='1'/>
           { totalProducts }
