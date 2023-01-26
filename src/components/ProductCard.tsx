@@ -1,11 +1,15 @@
+import { Product } from "@/pages";
 import { Flex, Heading, HStack, Icon, Image, Text } from "@chakra-ui/react";
 import { FiShoppingBag } from 'react-icons/fi';
 
-export function ProductCard() {
+interface ProductCard {
+  product: Product
+}
+
+export function ProductCard({ product: { photo, name, price, description } }: ProductCard) {
   return (
     <Flex
       w='218px'
-      h='fit-content'
       bg='white'
       borderRadius='8px'
       boxShadow='0px 2px 8px rgba(0, 0, 0, 0.135216)'
@@ -15,34 +19,33 @@ export function ProductCard() {
           <Image
             boxSize={'140px'}
             objectFit='contain'
-            src="https://m.media-amazon.com/images/I/511KyqqmhsL._AC_SX522_.jpg"
-            alt='Product Image'
+            src={photo}
+            alt={name}
           />
         </Flex>
-        <Flex mx='14px' mt='14px' mb='8px'>
+        <Flex mx='14px' mt='14px' mb='8px' justify='space-between' >
           <Heading
             fontWeight={400}
             fontSize='16px'
             lineHeight='19px'
             color='brand.font.gray.500'
           >
-            Apple Watch Series 4 GPS
+            { name }
           </Heading>
-          <Flex bg='brand.gray.500' borderRadius='5px' align='center' justify='center'>
+          <Flex bg='brand.gray.500' borderRadius='5px' align='center' justify='center' h='fit-content'>
             <Text
               fontWeight={700}
               fontSize='15px'
-              lineHeight='15px'
               color='white'
-              px='8px'
+              px='4px'
               py='4px'
             >
-              R$399
+              { price }
             </Text>
           </Flex>
         </Flex>
         <Text fontWeight={300} fontSize='10px' lineHeight='12px' color='brand.font.gray.500' mx='14px' mb='12px'>
-          Redesigned from scratch and completely revised
+          { description }
         </Text>
         <HStack
           mt='auto'
