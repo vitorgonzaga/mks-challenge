@@ -4,6 +4,8 @@ import type { AppProps } from 'next/app'
 import { QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
 import { Provider } from 'react-redux'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import { store } from '../store/store'
 import { theme } from '../styles/theme'
 
@@ -17,6 +19,7 @@ export default function App({ Component, pageProps }: AppProps) {
       </ChakraProvider>
 
       <ReactQueryDevtools  position='bottom-left' />
+      <ToastContainer />
     </QueryClientProvider>
   )
 }
