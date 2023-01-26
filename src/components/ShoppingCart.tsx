@@ -1,12 +1,13 @@
 import { Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, Flex, Stack, Text } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
-import { onClose, selectIsOpen } from '../store/shoppingCartSlice';
+import { IsOpenSelector, onClose } from '../store/shoppingCartSlice';
 import { ProductInCard } from "./ProductInCard";
 
 
 export function ShoppingCart() {
   const dispatch = useDispatch()
-  const isOpen = useSelector(selectIsOpen)
+  const isOpen = useSelector(IsOpenSelector)
+
 
   return(
     <Drawer
