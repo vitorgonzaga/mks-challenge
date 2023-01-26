@@ -1,14 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { RootState } from './store'
 
-// type product = {
-//   id: number,
-//   name: string,
-//   brand: string,
-//   description: string,
-//   price: number
-// }
-
 export const shoppingCartSlice = createSlice({
   name: 'shoppingCart',
   initialState: {

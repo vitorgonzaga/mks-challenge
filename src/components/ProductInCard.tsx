@@ -13,7 +13,6 @@ export function ProductInCard() {
       boxShadow='-2px 2px 10px rgba(0, 0, 0, 0.05)'
       position='relative'
       align='center'
-      // justify='space-between'
       px='16px'
     >
       <Icon as={AiFillCloseCircle}  position='absolute' top={0} right={0} />

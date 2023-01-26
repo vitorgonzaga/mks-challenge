@@ -35,10 +35,6 @@ export const theme = extendTheme({
         color: 'inherit',
         textDecoration: 'none'
       },
-      // p: {
-      //   marginBlockStart: '0px',
-      //   marginBlockEnd: '0px'
-      // }
     }
   }
 })

@@ -22,7 +22,6 @@ export function ShoppingCart() {
             <Text
               as='span'
               w='250px'
-              // pl='23px'
               color='white'
               fontWeight={700}
               fontSize='27px'

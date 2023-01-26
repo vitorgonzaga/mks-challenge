@@ -16,7 +16,6 @@ export function Header() {
       alignItems='center'
       justify='center'
       mb='auto'
-      // position={'absolute'}
     >
       <Flex  w='100%' maxW={1440} align='center' >
         <Text
