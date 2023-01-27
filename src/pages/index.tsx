@@ -37,7 +37,7 @@ export default function Home({ products }: HomeProps) {
       }
     })
 
-    const products = data.products.map(({ id, photo, name, price, description, createdAt }: Product) => {
+    const productsFormatted = data.products.map(({ id, photo, name, price, description, createdAt }: Product) => {
       return {
         id,
         photo,
@@ -52,8 +52,10 @@ export default function Home({ products }: HomeProps) {
       }
     })
 
-    return products
+    return productsFormatted
 
+  }, {
+    initialData: products
   })
 
   useEffect(() => {
