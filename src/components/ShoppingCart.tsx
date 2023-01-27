@@ -15,12 +15,20 @@ export function ShoppingCart() {
       isOpen={isOpen}
       onClose={() => dispatch(onClose())}
       placement='right'
-      size='md'
+      size={['xs', 'md']}
     >
       <DrawerOverlay>
         <DrawerContent bg='brand.blue.500' w='486px'>
-          <DrawerCloseButton color='white' bg='black' borderRadius='full' mt='39px' mr='22px' />
-          <DrawerHeader pl='47px' py='36px' display='flex' h='128px' alignItems='center' justifyContent='flex-start'>
+          <DrawerCloseButton
+            color='white'
+            bg='black'
+            borderRadius='full'
+            mt={['26px', '39px']}
+            mr={['16px', '22px']}
+            w={['46px']}
+            h={['46px']}
+          />
+          <DrawerHeader pl={['32px', '47px']} py='36px' display='flex' h='128px' alignItems='center' justifyContent='flex-start'>
             <Text
               as='span'
               w='250px'
@@ -33,7 +41,14 @@ export function ShoppingCart() {
               <Text>de compras</Text>
             </Text>
           </DrawerHeader>
-          <DrawerBody pl='47px' display='flex' flexDirection='column' alignItems='center' justifyContent='flex-start' >
+          <DrawerBody
+            pl={['0px', '47px']}
+            px={['auto']}
+            display='flex'
+            flexDirection='column'
+            alignItems='center'
+            justifyContent={'flex-start'}
+          >
             <Stack spacing='28px' >
               { shoppingCart.map(product => <ProductInCard key={product.id} product={product} /> ) }
             </Stack>

@@ -78,20 +78,21 @@ export default function Home({ products }: HomeProps) {
         maxW={1440}
         mx='auto'
         // my='auto'
-        // h='calc(100vh - 101px - 34px)'
-        // mt='101px'
-        h="100%"
+        h={['calc(100vh - 48px - 34px)', 'calc(100vh - 101px - 34px)']}
+        mt={['48px', '101px']}
+        // h="100vh"
         align='center'
         justify='center'
       >
         <Flex
-          w='100%'
+          w='100vw'
           maxWidth={950}
-          h='100%'
-          maxHeight={650}
+          h='100vh'
+          maxHeight={660}
           wrap='wrap'
-          justify='space-between'
+          justify={['center', 'space-between']}
           gap='16px'
+          mt={['100px']}
         >
           { isLoading ? (
             <Flex align='center' justify='center'>

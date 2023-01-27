@@ -12,7 +12,7 @@ export function Header() {
     <Flex
       as='header'
       w='100%'
-      h='101px'
+      h={['48px', '101px']}
       bg='brand.blue.500'
       alignItems='center'
       justify='center'
@@ -21,17 +21,17 @@ export function Header() {
       <Flex  w='100%' maxW={1440} align='center' >
         <Text
           fontWeight={600}
-          fontSize='40px'
+          fontSize={['32px', '40px']}
           lineHeight='19px'
           color='white'
-          ml='65px'
+          ml={['20px', '65px']}
         >
           MKS
           <Text
             as='span'
             fontWeight={300}
             ml='1'
-            fontSize='20px'
+            fontSize={['16px', '20px']}
             lineHeight='19px'
           >
             Sistemas
@@ -39,13 +39,14 @@ export function Header() {
         </Text>
         <Button
           ml='auto'
-          size='lg'
+          mr='23px'
+          size={['sm', 'lg']}
           onClick={() => {
             dispatch(onOpen())
             dispatch(calculateTotal())
           }}
         >
-          <Icon as={IoCartSharp} fontSize='20px' mr='1'/>
+          <Icon as={IoCartSharp} fontSize={['16px', '20px']} mr={['6px', '12px']} mb='2px'/>
           { totalProducts }
         </Button>
       </Flex>

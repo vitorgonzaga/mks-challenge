@@ -1,6 +1,6 @@
 import { calculateTotal, ProductInCart, removeProduct } from "@/store/shoppingCartSlice";
-import { Flex, Icon, IconButton, Image, Text } from "@chakra-ui/react";
-import { AiFillCloseCircle } from "react-icons/ai";
+import { Flex, Icon, IconButton, Image, Text, useBreakpointValue } from "@chakra-ui/react";
+import { AiFillCloseCircle, AiOutlineClose } from "react-icons/ai";
 import { FiMinus } from "react-icons/fi";
 import { IoAdd } from "react-icons/io5";
 import { useDispatch } from "react-redux";
@@ -11,123 +11,140 @@ interface ProductInCardProps {
 }
 
 export function ProductInCard({product: { id, photo, name, amount, price }}: ProductInCardProps) {
+  const isWideVersion = useBreakpointValue({
+    base: false,
+    lg: true
+  })
+
   const dispatch = useDispatch()
 
   return(
     <Flex
       bg='white'
-      w='379px'
-      h='95px'
+      w={['250px', '379px']}
+      h={['220px', '95px']}
       borderRadius='8px'
       boxShadow='-2px 2px 10px rgba(0, 0, 0, 0.05)'
       position='relative'
       align='center'
+      justify={['center']}
       px='16px'
+      direction={['column', 'row']}
     >
       <Icon
-        as={AiFillCloseCircle}
+        as={isWideVersion ? AiFillCloseCircle : AiOutlineClose }
         position='absolute'
-        top={-1}
-        right={-1}
-        fontSize='25px'
+        top={[2, -1]}
+        right={[2, -1]}
+        fontSize={['35px', '25px']}
         onClick={() => {
           dispatch(removeProduct(id))
           dispatch(calculateTotal())
         }}
         cursor='pointer'
       />
-      <Flex w='90px' align='center' justify='center' >
+      <Flex w={['110px', '90px']} align='center' justify='center' mb={['14px']}>
         <Image
-          boxSize='70px'
+          boxSize={['110px', '70px']}
           objectFit='contain'
           src={photo}
           alt={name}
         />
       </Flex>
-      <Flex w='100px' >
+      <Flex w={['100%', '100px']} justify={['center']}>
         <Text
           fontWeight={400}
-          fontSize='13px'
+          fontSize={['16px', '13px']}
           lineHeight='17px'
           color='brand.font.gray.500'
         >
           { name }
         </Text>
       </Flex>
-      <Flex
-        direction='column'
-        align='flex-start'
-        mx='9px'
-      >
-        <Text fontWeight={400}  fontSize='9px' lineHeight='6px'>Qtd:</Text>
+      <Flex justify={['space-between']}  w={['100%']} mt={['12px']}>
         <Flex
-          align='center'
-          justify='space-between'
-          border='0.3px solid'
-          borderColor='brand.gray.300'
-          p='4px'
-          w='60px'
-          h='19px'
-          bg='white'
-          borderRadius='4px'
-          mt='6px'
+          direction='column'
+          align='flex-start'
+          mx={['0px', '9px']}
         >
-          {/* <Button color='black' fontWeight={400} fontSize='8px' w='16px' h='16px' p='0'>-</Button> */}
-          <IconButton
-            aria-label="Add on product to cart"
-            icon={<IoAdd />}
-            size='16px'
-            fontSize='14px'
-            color='black'
-            variant='unstyled'
-            onClick={() => {
-              dispatch(incrementProduct(id))
-              dispatch(calculateTotal())
-            }}
-          />
-          <Flex
-            color='black'
-            fontWeight={400}
-            fontSize='8px'
-            lineHeight='10px'
-            w='16px'
-            align='center'
-            justify='center'
-          >
-            { amount }
-          </Flex>
-          <IconButton
-            aria-label="Add on product to cart"
-            icon={<FiMinus />}
-            size='16px'
-            fontSize='14px'
-            color='black'
-            variant='unstyled'
-            onClick={() => {
-              dispatch(decrementProduct(id))
-              dispatch(calculateTotal())
-            }}
-          />
-          {/* <Button color='black' fontWeight={400} fontSize='8px' w='16px' h='16px' p='0' >+</Button> */}
-        </Flex>
-      </Flex>
-      <Flex flex={1} align='center' justifyContent='center'  >
-        <Text
-          mt='10px'
-          color='black'
-          fontWeight={700}
-          fontSize='14px'
-          lineHeight='17px'
-        >
-          {
-            Intl.NumberFormat('pt-BR', {
-              style: 'currency',
-              currency: 'BRL',
-              minimumFractionDigits: 0
-            }).format(parseFloat(price.replace(/[R$.]+/g,"")) * amount)
 
-          }
-        </Text>
+          { isWideVersion && (<Text fontWeight={400}  fontSize='9px' lineHeight='6px'>Qtd:</Text>) }
+
+          <Flex
+            align='center'
+            justify={['space-around', 'space-between']}
+            border='0.3px solid'
+            borderColor='brand.gray.300'
+            p='4px'
+            w={['98px', '60px']}
+            h={['35px', '19px']}
+            bg='white'
+            borderRadius='4px'
+            mt={['0px', '6px']}
+          >
+            <IconButton
+              aria-label="Add on product to cart"
+              icon={<IoAdd />}
+              size={['20px', '16px']}
+              fontSize={['20px', '14px']}
+              color='black'
+              variant='unstyled'
+              onClick={() => {
+                dispatch(incrementProduct(id))
+                dispatch(calculateTotal())
+              }}
+            />
+            <Flex
+              color='black'
+              fontWeight={400}
+              fontSize={['16px', '8px']}
+              lineHeight='10px'
+              w='16px'
+              align='center'
+              justify='center'
+            >
+              { amount }
+            </Flex>
+            <IconButton
+              aria-label="Add on product to cart"
+              icon={<FiMinus />}
+              size={['20px', '16px']}
+              fontSize={['20px', '14px']}
+              color='black'
+              variant='unstyled'
+              onClick={() => {
+                dispatch(decrementProduct(id))
+                dispatch(calculateTotal())
+              }}
+            />
+          </Flex>
+        </Flex>
+        <Flex
+          flex={[0,
+          1]}
+          align='center'
+          justifyContent='center'
+          px={['12px']}
+          bg={['brand.gray.500']}
+          borderRadius={['5px']}
+        >
+          <Text
+            mt={['0px', '10px']}
+            color={['white', 'black']}
+            fontWeight={700}
+            fontSize='14px'
+            lineHeight='17px'
+          >
+            {
+              Intl.NumberFormat('pt-BR', {
+                style: 'currency',
+                currency: 'BRL',
+                minimumFractionDigits: 0
+              }).format(parseFloat(price.replace(/[R$.]+/g,"")) * amount)
+
+            }
+          </Text>
+        </Flex>
       </Flex>
     </Flex>
   )
