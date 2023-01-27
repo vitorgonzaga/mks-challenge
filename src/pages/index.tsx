@@ -93,8 +93,14 @@ export default function Home({ products }: HomeProps) {
           mt={['100px']}
         >
           { isLoading ? (
-            <Flex align='center' justify='center'>
-              <Spinner fontSize='50px'/>
+            <Flex align='center' justify='center' w='100vw'>
+              <Spinner
+                thickness='4px'
+                speed='0.65s'
+                emptyColor='gray.200'
+                color='brand.blue.500'
+                size={['md', 'xl']}
+              />
             </Flex>
           ) : error ? (
             <Flex align='center' justify='center'>
