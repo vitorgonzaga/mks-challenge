@@ -77,10 +77,8 @@ export default function Home({ products }: HomeProps) {
         w='100%'
         maxW={1440}
         mx='auto'
-        // my='auto'
         h={['calc(100vh - 48px - 34px)', 'calc(100vh - 101px - 34px)']}
-        mt={['48px', '101px']}
-        // h="100vh"
+        mt={['48px']}
         align='center'
         justify='center'
       >

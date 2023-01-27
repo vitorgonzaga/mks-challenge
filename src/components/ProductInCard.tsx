@@ -27,7 +27,7 @@ export function ProductInCard({product: { id, photo, name, amount, price }}: Pro
       boxShadow='-2px 2px 10px rgba(0, 0, 0, 0.05)'
       position='relative'
       align='center'
-      justify={['center']}
+      justify={['center', 'space-between']}
       px='16px'
       direction={['column', 'row']}
     >
@@ -43,7 +43,7 @@ export function ProductInCard({product: { id, photo, name, amount, price }}: Pro
         }}
         cursor='pointer'
       />
-      <Flex w={['110px', '90px']} align='center' justify='center' mb={['14px']}>
+      <Flex w={['110px', '70px']} align='center' justify='center' mb={['14px', '0px']} mr={['0px', '8px']}>
         <Image
           boxSize={['110px', '70px']}
           objectFit='contain'
@@ -51,7 +51,7 @@ export function ProductInCard({product: { id, photo, name, amount, price }}: Pro
           alt={name}
         />
       </Flex>
-      <Flex w={['100%', '100px']} justify={['center']}>
+      <Flex w={['100%', '90px']} justify={['center', 'flex-start']} mr={['0px', '10px']} >
         <Text
           fontWeight={400}
           fontSize={['16px', '13px']}
@@ -61,11 +61,11 @@ export function ProductInCard({product: { id, photo, name, amount, price }}: Pro
           { name }
         </Text>
       </Flex>
-      <Flex justify={['space-between']}  w={['100%']} mt={['12px']}>
+      <Flex justify={['space-between']}  w={['100%', '165px']} mt={['12px', '0px']}>
         <Flex
           direction='column'
           align='flex-start'
-          mx={['0px', '9px']}
+          mx={['0px']}
         >
 
           { isWideVersion && (<Text fontWeight={400}  fontSize='9px' lineHeight='6px'>Qtd:</Text>) }
@@ -120,12 +120,11 @@ export function ProductInCard({product: { id, photo, name, amount, price }}: Pro
           </Flex>
         </Flex>
         <Flex
-          flex={[0,
-          1]}
+          flex={[0]}
           align='center'
           justifyContent='center'
           px={['12px']}
-          bg={['brand.gray.500']}
+          bg={['brand.gray.500', 'white']}
           borderRadius={['5px']}
         >
           <Text

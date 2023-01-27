@@ -42,11 +42,10 @@ export function ShoppingCart() {
             </Text>
           </DrawerHeader>
           <DrawerBody
-            pl={['0px', '47px']}
             px={['auto']}
             display='flex'
             flexDirection='column'
-            alignItems='center'
+            alignItems={'center'}
             justifyContent={'flex-start'}
           >
             <Stack spacing='28px' >
