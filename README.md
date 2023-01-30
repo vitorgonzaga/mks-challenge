@@ -4,7 +4,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 This repo was created for a technical challenge development in a recruitment job process.
 
-## Getting Started
+## Getting Started (Locally)
 
 First, run the development server:
 
@@ -17,6 +17,10 @@ pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## Deployment
+
+https://mks-sistemas-eight.vercel.app/
 
 ## Test Coverage (in development :construction:)
 
