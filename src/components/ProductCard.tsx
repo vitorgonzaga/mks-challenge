@@ -4,11 +4,11 @@ import { FiShoppingBag } from 'react-icons/fi';
 import { useDispatch } from "react-redux";
 import { addProduct, calculateTotal } from '../store/shoppingCartSlice';
 
-interface ProductCard {
+export interface ProductCardProps {
   product: Product
 }
 
-export function ProductCard({ product: { id, photo, name, price, description } }: ProductCard) {
+export function ProductCard({ product: { id, photo, name, price, description } }: ProductCardProps) {
   const dispatch = useDispatch()
 
   return (

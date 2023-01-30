@@ -37,6 +37,12 @@ export const shoppingCartSlice = createSlice({
           amount: 1
         }
         state.cart.push(newProduct)
+        // ---------------------------------------------------------------------
+        // with redux toolkit i dont need to worry about immutability
+        // const oldCart = state.cart
+        // const updatedCart = [ ...oldCart, newProduct ]
+        // state.cart = updatedCart
+        // ---------------------------------------------------------------------
         localStorage.setItem('@mks:cart', JSON.stringify(state.cart))
       }
     },
